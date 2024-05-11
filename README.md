@@ -4,7 +4,9 @@
  - Now open http://localhost:3000/ locally
 
 # Desktop view
-![image](https://user-images.githubusercontent.com/20709166/122653868-41286300-d165-11eb-99e8-ebccc503b7e9.png)
+<img width="1720" alt="image" src="https://github.com/Himachallad/covid_tracker/assets/20709166/43a9a90b-3ba6-4e54-87f6-60b04c4f9ea0">
+
 
 # Mobile View
-![image](https://user-images.githubusercontent.com/20709166/122653886-69b05d00-d165-11eb-93c7-acaba72ff3a0.png)
+<img width="231" alt="image" src="https://github.com/Himachallad/covid_tracker/assets/20709166/21efa81b-c2e0-4236-a847-d100c7a493ec">
+
