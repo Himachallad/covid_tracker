@@ -44,7 +44,7 @@ export default function CovidMap({
   useEffect(() => {
     map.locate();
     map.zoomIn(1);
-  }, [lat, long]);
+  }, [lat, long, selectedCountry]);
   return (
     <>
       <TileLayer

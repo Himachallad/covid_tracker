@@ -1,12 +1,15 @@
+import data from "./covid.config";
+
 function refactorResponse(data) {
   let covidData = {};
+
   data?.map((item) => {
-    covidData[item.country] = {
-      active: item.active,
-      total: item.cases,
-      deaths: item.deaths,
-      recovered: item.recovered,
-      countryInfo: item.countryInfo,
+    covidData[item["Country"]] = {
+      totalCases: item["Total Cases"] || 0,
+      totalRecovered: item["Total Recovered"] || 0,
+      totalDeaths: item["Total Deaths"] || 0,
+      totalTests: item["Total Tests"] || 0,
+      countryInfo: item["countryInfo"]
     };
   });
   return covidData;
@@ -14,9 +17,6 @@ function refactorResponse(data) {
 
 export async function fetchCovidData() {
   try {
-    const data = await (
-      await fetch("https://corona.lmao.ninja/v2/countries?yesterday&sort")
-    ).json();
     const refactoredData = refactorResponse(data);
     return refactoredData;
   } catch (e) {

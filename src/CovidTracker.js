@@ -5,6 +5,7 @@ import Card from "./components/card";
 import { MapContainer } from "react-leaflet";
 import CovidMap from "./components/covid-map";
 import "./CovidTracker.css";
+import Footer from "./Footer/footer";
 
 function App() {
   const [covidData, setCovidData] = useState([]);
@@ -15,7 +16,7 @@ function App() {
     type: "active",
   });
   const [globalMaxCount, setGlobalMaxCount] = useState({
-    total: 0,
+    totalCases: 0,
     active: 0,
     recovered: 0,
     deaths: 0,
@@ -33,28 +34,32 @@ function App() {
 
   useEffect(() => {
     const maxCasesData = {
-      total: 0,
-      active: 0,
-      recovered: 0,
-      deaths: 0,
+      totalCases: 0,
+      totalTests: 0,
+      totalRecovered: 0,
+      totalDeaths: 0,
     };
 
+    if (!covidData) {
+      return []
+    }
+
     Object.keys(covidData).forEach((country) => {
-      maxCasesData.total = Math.max(
-        maxCasesData.total,
-        covidData[country].total
+      maxCasesData.totalCases = Math.max(
+        maxCasesData.totalCases,
+        covidData[country].totalCases
       );
-      maxCasesData.active = Math.max(
-        maxCasesData.active,
-        covidData[country].active
+      maxCasesData.totalTests = Math.max(
+        maxCasesData.totalTests,
+        covidData[country].totalTests
       );
-      maxCasesData.recovered = Math.max(
-        maxCasesData.recovered,
-        covidData[country].recovered
+      maxCasesData.totalRecovered = Math.max(
+        maxCasesData.totalRecovered,
+        covidData[country].totalCases - covidData[country].totalDeaths
       );
-      maxCasesData.deaths = Math.max(
-        maxCasesData.deaths,
-        covidData[country].deaths
+      maxCasesData.totalDeaths = Math.max(
+        maxCasesData.totalDeaths,
+        covidData[country].totalDeaths
       );
     });
     setGlobalMaxCount(maxCasesData);
@@ -84,30 +89,30 @@ function App() {
         <Card
           changeMapColor={setMapInfo}
           heading="Total"
-          cases={covidData[country].total}
+          cases={covidData[country].totalCases}
           color="blue"
           type="total"
         />
         <Card
           changeMapColor={setMapInfo}
-          heading="Active"
-          cases={covidData[country].active}
+          heading="Total Tests"
+          cases={covidData[country].totalTests}
           color="red"
-          type="active"
+          type="totalTests"
         />
         <Card
           changeMapColor={setMapInfo}
-          heading="Deaths"
-          cases={covidData[country].deaths}
+          heading="Total Deaths"
+          cases={covidData[country].totalDeaths}
           color="grey"
-          type="deaths"
+          type="totalDeaths"
         />
         <Card
           changeMapColor={setMapInfo}
-          heading="Recovered"
-          cases={covidData[country].recovered}
+          heading="Total Recovered"
+          cases={covidData[country].totalCases - covidData[country].totalDeaths}
           color="green"
-          type="recovered"
+          type="totalRecovered"
         />
       </div>
     );
@@ -135,13 +140,14 @@ function App() {
   };
 
   return (
+    <>
     <div className="covidTrackerContainer">
       <h1 className="covidTrackerHeading">Covid tracker</h1>
       <div className="covidTrackerBody">
-        <div>{getWorldMap()}</div>
+        <div className="worldMap">{getWorldMap()}</div>
         <div className="right">
           <div className="flagSelectContainer">
-            <Flag countryInfo={covidData[country]?.countryInfo} />
+            <Flag country={country} />
             <select
               className="countryDropDown"
               value={country}
@@ -151,9 +157,12 @@ function App() {
             </select>
           </div>
           <div className="cardsContainer">{getTrackerCards()}</div>
+          
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 
