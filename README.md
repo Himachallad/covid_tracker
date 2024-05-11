@@ -8,5 +8,8 @@
 
 
 # Mobile View
-<img width="231" alt="image" src="https://github.com/Himachallad/covid_tracker/assets/20709166/21efa81b-c2e0-4236-a847-d100c7a493ec">
+<img width="300" alt="image" src="https://github.com/Himachallad/covid_tracker/assets/20709166/21efa81b-c2e0-4236-a847-d100c7a493ec">
+<img width="300" alt="image" src="https://github.com/Himachallad/covid_tracker/assets/20709166/20ac5417-8cf5-44ca-86a1-2ec068b9283f">
+<img width="300" alt="image" src="https://github.com/Himachallad/covid_tracker/assets/20709166/2b7e7a4c-f075-4ba4-9b09-5a06a87298b1">
+
 
