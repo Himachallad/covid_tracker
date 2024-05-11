@@ -1,3 +1,6 @@
+# Demo
+https://covid-tracker.tiiny.site/
+
 # Installation steps
  - Fork or clone the repo.
  - Do a `yarn install` and `yarn start`
